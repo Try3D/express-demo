@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Electronics",
+    "description": "Smartphones, laptops, headphones, smartwatches and other electronic devices"
+  },
+  {
+    "id": 2,
+    "name": "Home & Garden",
+    "description": "Home improvement, garden tools, and household items"
+  },
+  {
+    "id": 3,
+    "name": "Books",
+    "description": "Fiction, non-fiction, educational, and reference books"
+  },
+  {
+    "id": 4,
+    "name": "Sports & Outdoors",
+    "description": "Sporting goods, outdoor equipment, and fitness accessories"
+  },
+  {
+    "id": 5,
+    "name": "Fashion & Accessories",
+    "description": "Clothing, shoes, bags, and fashion accessories"
+  },
+  {
+    "id": 1762103577888,
+    "name": "Stationary",
+    "description": "Stationary items for Children"
+  }
+]

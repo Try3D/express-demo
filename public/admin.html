@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS Admin - Product Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .admin-container {
+            max-width: 120rem;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .admin-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 3rem;
+            border-radius: 1rem;
+        }
+        
+        .admin-header h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .admin-nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .admin-nav button {
+            background: var(--color-foreground);
+            color: var(--color-background);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1.4rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .admin-nav button.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .admin-section {
+            display: none;
+        }
+        
+        .admin-section.active {
+            display: block;
+        }
+        
+        .admin-form {
+            background: var(--color-background-2);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .form-group {
+            margin-bottom: 2rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--color-foreground);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 0.5rem;
+            font-size: 1.4rem;
+        }
+        
+        .form-group textarea {
+            height: 8rem;
+            resize: vertical;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 1.4rem;
+            font-weight: 500;
+            transition: transform 0.2s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+        
+        .btn-danger {
+            background: var(--color-error);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.3rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--color-background);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .admin-table th,
+        .admin-table td {
+            padding: 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        .admin-table th {
+            background: var(--color-background-2);
+            font-weight: 600;
+        }
+        
+        .admin-table img {
+            width: 5rem;
+            height: 5rem;
+            object-fit: cover;
+            border-radius: 0.5rem;
+        }
+        
+        .status-message {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+        
+        .status-success {
+            background: rgba(24, 169, 70, 0.1);
+            color: var(--color-success);
+            border: 1px solid var(--color-success);
+        }
+        
+        .status-error {
+            background: rgba(216, 44, 32, 0.1);
+            color: var(--color-error);
+            border: 1px solid var(--color-error);
+        }
+        
+        .admin-login {
+            max-width: 40rem;
+            margin: 10rem auto;
+            padding: 3rem;
+            background: var(--color-background-2);
+            border-radius: 1rem;
+            text-align: center;
+        }
+        
+        .admin-login h2 {
+            margin-bottom: 2rem;
+            color: var(--color-foreground);
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Form -->
+    <div id="login-section" class="admin-login">
+        <h2>Admin Login</h2>
+        <div class="form-group">
+            <label for="admin-key">Admin Key:</label>
+            <input type="password" id="admin-key" placeholder="Enter admin key">
+        </div>
+        <button class="btn-primary" onclick="login()">Login</button>
+        <div id="login-error" style="color: var(--color-error); margin-top: 1rem; display: none;"></div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="admin-dashboard" style="display: none;">
+        <div class="admin-container">
+            <div class="admin-header">
+                <h1>NEXUS Admin Dashboard</h1>
+                <p style="text-align: center; opacity: 0.9;">Manage your products, categories, and orders</p>
+            </div>
+
+            <div class="admin-nav">
+                <button onclick="showSection('products')" class="active" id="products-tab">Products</button>
+                <button onclick="showSection('categories')" id="categories-tab">Categories</button>
+                <button onclick="showSection('orders')" id="orders-tab">Orders</button>
+                <button onclick="logout()" style="background: var(--color-error);">Logout</button>
+            </div>
+
+            <div id="status-message"></div>
+
+            <!-- Products Section -->
+            <div id="products-section" class="admin-section active">
+                <div class="admin-form">
+                    <h3>Add New Product</h3>
+                    <form id="product-form">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                            <div class="form-group">
+                                <label for="product-name">Product Name:</label>
+                                <input type="text" id="product-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-price">Price ($):</label>
+                                <input type="number" step="0.01" id="product-price" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-category">Category:</label>
+                                <select id="product-category" required></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-stock">Stock:</label>
+                                <input type="number" id="product-stock" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-description">Description:</label>
+                            <textarea id="product-description" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="product-image">Image URL:</label>
+                            <input type="url" id="product-image" placeholder="https://...">
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">Add Product</button>
+                            <button type="button" class="btn btn--secondary" onclick="resetProductForm()">Clear Form</button>
+                        </div>
+                    </form>
+                </div>
+
+                <h3>All Products</h3>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products-list">
+                        <!-- Products will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Categories Section -->
+            <div id="categories-section" class="admin-section">
+                <div class="admin-form">
+                    <h3>Add New Category</h3>
+                    <form id="category-form">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                            <div class="form-group">
+                                <label for="category-name">Category Name:</label>
+                                <input type="text" id="category-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="category-description">Description:</label>
+                                <input type="text" id="category-description">
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">Add Category</button>
+                        </div>
+                    </form>
+                </div>
+
+                <h3>All Categories</h3>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="categories-list">
+                        <!-- Categories will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Orders Section -->
+            <div id="orders-section" class="admin-section">
+                <h3>All Orders</h3>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Email</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Items</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-list">
+                        <!-- Orders will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+[
+  {
+    "id": "1",
+    "name": "iPhone 15 Pro",
+    "description": "Latest iPhone with A17 Pro chip, titanium design, and advanced camera system. Features 6.1-inch Super Retina XDR display.",
+    "price": 999.99,
+    "categoryId": 1,
+    "stock": 45,
+    "imageUrl": "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=400&fit=crop&crop=center",
+    "createdAt": "2025-11-02T12:17:19.962Z",
+    "updatedAt": "2025-11-02T12:17:19.962Z"
+  },
+  {
+    "id": "2",
+    "name": "MacBook Pro 14-inch",
+    "description": "Powerful MacBook Pro with M3 chip, 14-inch Liquid Retina XDR display, and up to 22 hours battery life. Perfect for professionals.",
+    "price": 1999.99,
+    "categoryId": 1,
+    "stock": 20,
+    "imageUrl": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=400&fit=crop&crop=center",
+    "createdAt": "2025-11-02T12:17:19.962Z",
+    "updatedAt": "2025-11-02T12:17:19.962Z"
+  },
+  {
+    "id": "3",
+    "name": "Sony WH-1000XM5",
+    "description": "Industry-leading noise canceling wireless headphones with 30-hour battery life and crystal-clear hands-free calling.",
+    "price": 399.99,
+    "categoryId": 1,
+    "stock": 30,
+    "imageUrl": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop&crop=center",
+    "createdAt": "2025-11-02T12:17:19.962Z",
+    "updatedAt": "2025-11-02T12:17:19.962Z"
+  },
+  {
+    "id": "4",
+    "name": "Apple Watch Series 9",
+    "description": "Most advanced Apple Watch yet with S9 chip, Always-On Retina display, and comprehensive health tracking features.",
+    "price": 429.99,
+    "categoryId": 1,
+    "stock": 35,
+    "imageUrl": "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=400&h=400&fit=crop&crop=center",
+    "createdAt": "2025-11-02T12:17:19.962Z",
+    "updatedAt": "2025-11-02T12:17:19.962Z"
+  },
+  {
+    "id": "5",
+    "name": "Nike Air Jordan 1",
+    "description": "Classic basketball sneakers with premium leather construction and iconic silhouette. A timeless addition to any collection.",
+    "price": 170.99,
+    "categoryId": 5,
+    "stock": 50,
+    "imageUrl": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=400&fit=crop&crop=center",
+    "createdAt": "2025-11-02T12:17:19.962Z",
+    "updatedAt": "2025-11-02T12:17:19.962Z"
+  },
+  {
+    "id": "6",
+    "name": "Peak Design Everyday Backpack",
+    "description": "Versatile everyday carry backpack with modular organization system and weather-resistant materials. Perfect for photographers and travelers.",
+    "price": 279.99,
+    "categoryId": 5,
+    "stock": 25,
+    "imageUrl": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop&crop=center",
+    "createdAt": "2025-11-02T12:17:19.962Z",
+    "updatedAt": "2025-11-02T12:17:19.962Z"
+  },
+  {
+    "id": "2dc9fe09-b0f7-46ba-b8bc-61a50f1dea54",
+    "name": "Mug",
+    "description": "A drinking mug",
+    "price": 10,
+    "categoryId": 2,
+    "stock": 10,
+    "imageUrl": "https://www.ikea.com/in/en/images/products/dinera-mug-beige__0642527_pe701233_s5.jpg?f=xl",
+    "createdAt": "2025-11-02T17:29:26.398Z",
+    "updatedAt": "2025-11-02T17:29:26.398Z"
+  },
+  {
+    "id": "adeaf5a9-1fbb-43bd-9b44-c2524d7e7a47",
+    "name": "Mug",
+    "description": "A drinking mug",
+    "price": 10,
+    "categoryId": 2,
+    "stock": 10,
+    "imageUrl": "https://www.ikea.com/in/en/p/dinera-mug-beige-20350648/",
+    "createdAt": "2025-11-02T17:31:57.034Z",
+    "updatedAt": "2025-11-02T17:31:57.034Z"
+  }
+]
