@@ -16,7 +16,7 @@ A full-stack ecommerce platform with RESTful API for product management and a Re
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/try3d/express-demo
-cd restful-api
+cd express-demo
 ```
 
 ### 2. Install Dependencies
