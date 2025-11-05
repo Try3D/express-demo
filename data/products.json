@@ -8,7 +8,8 @@
     "stock": 45,
     "imageUrl": "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=400&fit=crop&crop=center",
     "createdAt": "2025-11-02T12:17:19.962Z",
-    "updatedAt": "2025-11-02T12:17:19.962Z"
+    "updatedAt": "2025-11-03T03:44:54.131Z",
+    "image": "https://www.apple.com/newsroom/images/2023/09/apple-unveils-iphone-15-pro-and-iphone-15-pro-max/tile/Apple-iPhone-15-Pro-lineup-hero-230912.jpg.news_app_ed.jpg"
   },
   {
     "id": "2",
@@ -86,5 +87,16 @@
     "imageUrl": "https://www.ikea.com/in/en/p/dinera-mug-beige-20350648/",
     "createdAt": "2025-11-02T17:31:57.034Z",
     "updatedAt": "2025-11-02T17:31:57.034Z"
+  },
+  {
+    "id": "e1464d80-2458-413b-94d1-896675658982",
+    "name": "laptop",
+    "description": "A device",
+    "price": 100,
+    "categoryId": 1,
+    "stock": null,
+    "imageUrl": "https://www.apple.com/newsroom/images/2023/09/apple-unveils-iphone-15-pro-and-iphone-15-pro-max/tile/Apple-iPhone-15-Pro-lineup-hero-230912.jpg.news_app_ed.jpg",
+    "createdAt": "2025-11-03T03:46:36.251Z",
+    "updatedAt": "2025-11-03T03:46:36.252Z"
   }
 ]

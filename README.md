@@ -1,303 +1,301 @@
 # Ecommerce API Demo
 
-A simple RESTful API for managing products in an ecommerce platform. Built with Node.js and Express.js.
+A full-stack ecommerce platform with RESTful API for product management and a React frontend. Built with Node.js, Express.js, and React.
 
 ## Features
 
-- ✅ Create, read, update, and delete products
-- ✅ Input validation and error handling
-- ✅ RESTful API design
-- ✅ In-memory data storage (perfect for demos)
-- ✅ JSON response format
+- 🛍️ Customer product browsing and cart functionality
+- 🔧 Admin product and category management
+- 🔒 Admin authentication with API key
+- 📱 Responsive React frontend
+- 🛠️ RESTful API with JSON responses
+- 💾 File-based data storage (perfect for demos)
 
-## Installation
+## Quick Start
 
-1. Clone or download this project
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-## Running the Server
-
-### Production mode:
+### 1. Clone the Repository
 ```bash
-npm start
+git clone https://github.com/try3d/express-demo
+cd restful-api
 ```
 
-### Development mode (with auto-restart):
+### 2. Install Dependencies
 ```bash
-npm run dev
+# Install both backend and frontend dependencies
+npm run install:all
+
+# Or install separately:
+npm install              # Backend dependencies
+cd frontend && npm install  # Frontend dependencies
 ```
 
-The server will start on `http://localhost:3000` by default.
+### 3. Start the Application
 
-## API Endpoints
+#### Option A: Start Both Servers (Recommended)
+```bash
+npm run dev:all
+```
+This starts both the API server (port 3000) and frontend dev server (port 5173) concurrently.
+
+#### Option B: Start Servers Separately
+
+**Backend API Server:**
+```bash
+npm run dev    # Development mode with auto-restart
+# or
+npm start      # Production mode
+```
+
+**Frontend Development Server:**
+```bash
+npm run frontend
+```
+
+### 4. Access the Application
+- **Frontend**: http://localhost:5173
+- **API**: http://localhost:3000
+- **Admin Panel**: http://localhost:5173/admin (Login with key: `admin123`)
+
+## API Documentation
 
 ### Base URL
 ```
-http://localhost:3000
+http://localhost:3000/api
 ```
 
-### 1. Get API Information
-- **GET** `/`
-- **Description**: Get API information and available endpoints
-- **Response**:
-  ```json
-  {
-    "message": "Welcome to the Ecommerce API Demo",
-    "version": "1.0.0",
-    "endpoints": {
-      "GET /products": "Get all products",
-      "GET /products/:id": "Get a specific product",
-      "POST /products": "Create a new product",
-      "PUT /products/:id": "Update a product",
-      "DELETE /products/:id": "Delete a product"
-    }
-  }
-  ```
+### Authentication
+Admin endpoints require the `x-admin-key` header with value `admin123`.
 
-### 2. Get All Products
-- **GET** `/products`
-- **Description**: Retrieve all products
-- **Response**:
-  ```json
-  {
-    "success": true,
-    "count": 2,
-    "data": [
-      {
-        "id": "uuid-string",
-        "name": "Sample Product 1",
-        "description": "This is a sample product for demonstration",
-        "price": 29.99,
-        "category": "Electronics",
-        "stock": 100,
-        "createdAt": "2023-01-01T00:00:00.000Z",
-        "updatedAt": "2023-01-01T00:00:00.000Z"
-      }
-    ]
-  }
-  ```
+## Customer Endpoints
 
-### 3. Get Single Product
-- **GET** `/products/:id`
-- **Description**: Retrieve a specific product by ID
-- **Parameters**: 
-  - `id` (URL parameter): Product ID
-- **Response**:
-  ```json
-  {
-    "success": true,
-    "data": {
-      "id": "uuid-string",
-      "name": "Sample Product 1",
-      "description": "This is a sample product for demonstration",
-      "price": 29.99,
-      "category": "Electronics",
-      "stock": 100,
-      "createdAt": "2023-01-01T00:00:00.000Z",
-      "updatedAt": "2023-01-01T00:00:00.000Z"
-    }
-  }
-  ```
+### Get All Products
+**GET** `/api/products`
 
-### 4. Create New Product
-- **POST** `/products`
-- **Description**: Create a new product
-- **Request Body**:
-  ```json
-  {
-    "name": "New Product",
-    "description": "Product description",
-    "price": 99.99,
-    "category": "Electronics",
-    "stock": 25
-  }
-  ```
-- **Response**:
-  ```json
-  {
-    "success": true,
-    "message": "Product created successfully",
-    "data": {
-      "id": "generated-uuid",
-      "name": "New Product",
-      "description": "Product description",
-      "price": 99.99,
-      "category": "Electronics",
-      "stock": 25,
-      "createdAt": "2023-01-01T00:00:00.000Z",
-      "updatedAt": "2023-01-01T00:00:00.000Z"
-    }
-  }
-  ```
+**Postman Setup:**
+- Method: `GET`
+- URL: `http://localhost:3000/api/products`
+- Headers: None required
 
-### 5. Update Product
-- **PUT** `/products/:id`
-- **Description**: Update an existing product
-- **Parameters**: 
-  - `id` (URL parameter): Product ID
-- **Request Body** (all fields optional):
-  ```json
-  {
-    "name": "Updated Product Name",
-    "description": "Updated description",
-    "price": 149.99,
-    "category": "Updated Category",
-    "stock": 50
-  }
-  ```
-- **Response**:
-  ```json
-  {
-    "success": true,
-    "message": "Product updated successfully",
-    "data": {
-      "id": "uuid-string",
-      "name": "Updated Product Name",
-      "description": "Updated description",
-      "price": 149.99,
-      "category": "Updated Category",
-      "stock": 50,
-      "createdAt": "2023-01-01T00:00:00.000Z",
-      "updatedAt": "2023-01-01T01:00:00.000Z"
-    }
-  }
-  ```
-
-### 6. Delete Product
-- **DELETE** `/products/:id`
-- **Description**: Delete a product
-- **Parameters**: 
-  - `id` (URL parameter): Product ID
-- **Response**:
-  ```json
-  {
-    "success": true,
-    "message": "Product deleted successfully",
-    "data": {
-      "id": "uuid-string",
-      "name": "Deleted Product",
-      "description": "Product description",
-      "price": 99.99,
-      "category": "Electronics",
-      "stock": 25,
-      "createdAt": "2023-01-01T00:00:00.000Z",
-      "updatedAt": "2023-01-01T00:00:00.000Z"
-    }
-  }
-  ```
-
-## Product Schema
-
-Each product has the following properties:
-
-- **id**: Unique identifier (UUID, auto-generated)
-- **name**: Product name (required, string)
-- **description**: Product description (required, string)
-- **price**: Product price (required, number > 0)
-- **category**: Product category (required, string)
-- **stock**: Stock quantity (required, integer >= 0)
-- **createdAt**: Creation timestamp (auto-generated)
-- **updatedAt**: Last update timestamp (auto-updated)
-
-## Error Handling
-
-The API returns consistent error responses:
-
-### Validation Error (400)
+**Response:**
 ```json
-{
-  "success": false,
-  "errors": [
-    "Product name is required",
-    "Valid product price is required (must be greater than 0)"
-  ]
-}
-```
-
-### Not Found Error (404)
-```json
-{
-  "success": false,
-  "error": "Product not found"
-}
-```
-
-### Server Error (500)
-```json
-{
-  "success": false,
-  "error": "Internal server error message",
-  "timestamp": "2023-01-01T00:00:00.000Z"
-}
-```
-
-## Example Usage with curl
-
-### Get all products:
-```bash
-curl http://localhost:3000/products
-```
-
-### Create a new product:
-```bash
-curl -X POST http://localhost:3000/products \
-  -H "Content-Type: application/json" \
-  -d '{
+[
+  {
+    "id": "uuid-string",
     "name": "Gaming Laptop",
     "description": "High-performance gaming laptop",
     "price": 1299.99,
-    "category": "Electronics",
+    "categoryId": 1,
+    "categoryName": "Electronics",
+    "imageUrl": "https://via.placeholder.com/300x300?text=Product",
     "stock": 15
-  }'
+  }
+]
 ```
 
-### Update a product:
-```bash
-curl -X PUT http://localhost:3000/products/your-product-id \
-  -H "Content-Type: application/json" \
-  -d '{
-    "price": 1199.99,
-    "stock": 10
-  }'
+### Get Single Product
+**GET** `/api/products/:id`
+
+**Postman Setup:**
+- Method: `GET`
+- URL: `http://localhost:3000/api/products/YOUR_PRODUCT_ID`
+- Headers: None required
+
+### Get All Categories
+**GET** `/api/categories`
+
+**Postman Setup:**
+- Method: `GET`
+- URL: `http://localhost:3000/api/categories`
+- Headers: None required
+
+**Response:**
+```json
+[
+  {
+    "id": 1,
+    "name": "Electronics",
+    "description": "Electronic devices and gadgets"
+  }
+]
 ```
 
-### Delete a product:
-```bash
-curl -X DELETE http://localhost:3000/products/your-product-id
+## Admin Endpoints
+
+### Get All Products (Admin)
+**GET** `/api/admin/products`
+
+**Postman Setup:**
+- Method: `GET`
+- URL: `http://localhost:3000/api/admin/products`
+- Headers:
+  - Key: `x-admin-key`
+  - Value: `admin123`
+
+### Create Product
+**POST** `/api/admin/products`
+
+**Postman Setup:**
+- Method: `POST`
+- URL: `http://localhost:3000/api/admin/products`
+- Headers:
+  - Key: `Content-Type`, Value: `application/json`
+  - Key: `x-admin-key`, Value: `admin123`
+- Body (raw JSON):
+```json
+{
+  "name": "Gaming Mouse",
+  "description": "High-precision gaming mouse with RGB lighting",
+  "price": 79.99,
+  "categoryId": 1,
+  "stock": 50,
+  "imageUrl": "https://via.placeholder.com/300x300?text=Gaming+Mouse"
+}
 ```
+
+### Update Product
+**PUT** `/api/admin/products/:id`
+
+**Postman Setup:**
+- Method: `PUT`
+- URL: `http://localhost:3000/api/admin/products/YOUR_PRODUCT_ID`
+- Headers:
+  - Key: `Content-Type`, Value: `application/json`
+  - Key: `x-admin-key`, Value: `admin123`
+- Body (raw JSON):
+```json
+{
+  "name": "Updated Gaming Mouse",
+  "price": 69.99,
+  "stock": 25
+}
+```
+
+### Delete Product
+**DELETE** `/api/admin/products/:id`
+
+**Postman Setup:**
+- Method: `DELETE`
+- URL: `http://localhost:3000/api/admin/products/YOUR_PRODUCT_ID`
+- Headers:
+  - Key: `x-admin-key`, Value: `admin123`
+
+### Create Category
+**POST** `/api/admin/categories`
+
+**Postman Setup:**
+- Method: `POST`
+- URL: `http://localhost:3000/api/admin/categories`
+- Headers:
+  - Key: `Content-Type`, Value: `application/json`
+  - Key: `x-admin-key`, Value: `admin123`
+- Body (raw JSON):
+```json
+{
+  "name": "Gaming Accessories",
+  "description": "Gaming keyboards, mice, and other accessories"
+}
+```
+
+### Delete Category
+**DELETE** `/api/admin/categories/:id`
+
+**Postman Setup:**
+- Method: `DELETE`
+- URL: `http://localhost:3000/api/admin/categories/CATEGORY_ID`
+- Headers:
+  - Key: `x-admin-key`, Value: `admin123`
+
+## Product Schema
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `id` | string | Auto-generated | UUID identifier |
+| `name` | string | Yes | Product name |
+| `description` | string | Yes | Product description |
+| `price` | number | Yes | Product price |
+| `categoryId` | number | Yes | Category ID reference |
+| `stock` | number | Yes | Available quantity |
+| `imageUrl` | string | Optional | Product image URL |
+| `createdAt` | string | Auto-generated | ISO timestamp |
+| `updatedAt` | string | Auto-updated | ISO timestamp |
+
+## Error Responses
+
+### 401 Unauthorized
+```json
+{
+  "message": "Unauthorized. Admin key required."
+}
+```
+
+### 404 Not Found
+```json
+{
+  "message": "Product not found"
+}
+```
+
+### 404 Product Out of Stock
+```json
+{
+  "message": "Product not found or out of stock"
+}
+```
+
+## NPM Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm start` | Start API server in production mode |
+| `npm run dev` | Start API server in development mode |
+| `npm run frontend` | Start frontend development server |
+| `npm run dev:all` | Start both servers concurrently |
+| `npm run install:all` | Install dependencies for both backend and frontend |
+| `npm run frontend:build` | Build frontend for production |
 
 ## Project Structure
 
 ```
-ecommerce-api-demo/
-├── package.json
-├── server.js              # Main server file
+restful-api/
+├── data/                      # JSON data files
+│   ├── products.json
+│   └── categories.json
+├── frontend/                  # React frontend
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── context/
+│   │   └── services/
+│   └── package.json
 ├── models/
-│   └── Product.js         # Product model and service
-└── README.md             # This file
+│   └── Product.js
+├── public/                    # Static HTML files
+├── index.js                   # Main API server
+├── package.json
+└── README.md
 ```
 
 ## Technology Stack
 
-- **Node.js**: Runtime environment
-- **Express.js**: Web framework
-- **UUID**: For generating unique IDs
-- **ES6 Modules**: Modern JavaScript module syntax
+**Backend:**
+- Node.js - Runtime environment
+- Express.js - Web framework
+- CORS - Cross-origin resource sharing
+- UUID - Unique ID generation
 
-## Future Enhancements
+**Frontend:**
+- React 19 - UI framework
+- Vite - Build tool and dev server
+- React Router - Client-side routing
+- Lucide React - Icons
 
-- Add database integration (MongoDB, PostgreSQL, etc.)
-- Add user authentication and authorization
-- Add pagination for product listings
-- Add product search and filtering
-- Add product categories management
-- Add order management
-- Add comprehensive testing
-- Add API rate limiting
-- Add API documentation with Swagger/OpenAPI
+## Development Tips
+
+1. **Testing API endpoints**: Use Postman or similar tools with the examples above
+2. **Admin access**: Use `admin123` as the `x-admin-key` header value
+3. **Data persistence**: Data is stored in JSON files in the `data/` directory
+4. **CORS**: The API allows all origins for development
+5. **Hot reload**: Both servers support hot reload during development
 
 ## License
 
